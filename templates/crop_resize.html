@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crop & Resize</title>
+
+  <!-- Cropper.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css"/>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: url("/static/crop_back.avif") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 400px; /* Reduced width */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .btn, .file-btn {
+  display: block;
+  width: 60%; /* Reduced width */
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #11998e, #38ef7d); /* Teal gradient */
+  border: none;
+  border-radius: 30px;
+  text-align: center;
+  cursor: pointer;
+  margin: 15px auto 0; /* Center the button */
+  transition: all 0.3s ease-in-out;
+}
+
+
+    .btn:hover, .file-btn:hover {
+      transform: scale(1.05);
+    }
+
+    #image {
+      max-width: 100%;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .crop-container {
+      margin-top: 20px;
+    }
+
+    #preview {
+      margin-top: 30px;
+    }
+
+    #previewImage {
+      max-width: 100%;
+      display: none;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    #downloadLink {
+      display: none;
+      margin-top: 20px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+  </style>
+
+  <!-- Cropper.js JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Crop & Resize Your Image</h1>
+
+    <!-- Custom File Upload -->
+    <label for="fileInput" class="file-btn">Choose Image</label>
+    <input type="file" id="fileInput" accept="image/*" onchange="previewImage(event)">
+
+    <!-- Image Preview -->
+    <img id="image" src="" alt="Image preview">
+
+    <!-- Crop and Resize Controls -->
+    <div class="crop-container">
+      <button class="btn" onclick="cropAndResizeImage()">Crop & Resize</button>
+    </div>
+
+    <!-- Cropped Image Preview -->
+    <div id="preview">
+      <h3 style="color: #fff;">Cropped Image Preview</h3>
+      <img id="previewImage" src="" alt="Cropped Image Preview">
+    </div>
+
+    <!-- Download Link -->
+    <div id="downloadLink">
+      <a id="downloadBtn" class="btn" download="cropped_resized_image.png">Download Cropped & Resized Image</a>
+    </div>
+  </div>
+
+  <script>
+    let cropper;
+
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const image = document.getElementById('image');
+          image.src = e.target.result;
+          image.onload = function () {
+            if (cropper) {
+              cropper.destroy();
+            }
+            cropper = new Cropper(image, {
+              aspectRatio: 1,
+              viewMode: 1,
+              autoCropArea: 0.8,
+            });
+          };
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function cropAndResizeImage() {
+      const canvas = cropper.getCroppedCanvas();
+      const croppedResizedImage = canvas.toDataURL("image/png");
+
+      const previewImage = document.getElementById('previewImage');
+      previewImage.src = croppedResizedImage;
+      previewImage.style.display = 'block';
+
+      const downloadLinkDiv = document.getElementById('downloadLink');
+      const downloadBtn = document.getElementById('downloadBtn');
+      downloadBtn.href = croppedResizedImage;
+      downloadLinkDiv.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+

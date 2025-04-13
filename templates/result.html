@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Processed Image</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('/static/result_back.avif') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 30px 20px;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      background: linear-gradient(to right, #b92b27, #1565c0);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .image-box {
+  background: rgba(255, 255, 255, 0.8); /* Pure white background */
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  animation: fadeInUp 1s ease forwards;
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+
+    .image-box:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .image-box h3 {
+      color: #6a1b4d;
+      margin-bottom: 15px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 15px;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.03);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      background: linear-gradient(90deg, #8e2de2, #4a00e0);
+      color: white;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 10px #4a00e0, 0 0 20px #4a00e0;
+      transition: all 0.3s ease;
+      margin-top: 40px;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #4a00e0, 0 0 25px #4a00e0;
+    }
+
+    a[href="/"] {
+      display: inline-block;
+      margin-top: 30px;
+      font-size: 15px;
+      color: #6b1e53;
+      font-weight: 600;
+    }
+
+    a[href="/"]:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>✨ Processed Image ✨</h2>
+
+  <div class="container">
+    <div class="image-box">
+      <h3>Original Image</h3>
+      <img src="{{ original_image }}" alt="Original Image" />
+    </div>
+    <div class="image-box">
+      <h3>Processed Image</h3>
+      <img src="{{ processed_image }}" alt="Processed Image" />
+    </div>
+  </div>
+
+  <a href="{{ processed_image }}" download>
+    <button>⬇ Download Processed Image</button>
+  </a>
+
+  <br/><br/>
+  <a href="/">← Go Back to Home</a>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

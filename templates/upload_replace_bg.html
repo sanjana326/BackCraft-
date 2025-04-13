@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Image - Replace Background</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    /* Body Styling */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f8dce7, #dbe3f5, #c3e0f3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: url('/static/upload_replace_back.avif') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+    }
+
+    /* Glass Container */
+    .container {
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 400px;
+    }
+
+    h2 {
+      color: #3c246d;
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .custom-file-upload {
+      display: block;
+      width: 100%;
+      padding: 14px 0;
+      margin-bottom: 15px;
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      text-align: center;
+    }
+
+    .custom-file-upload:hover {
+      transform: scale(1.05);
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      border: none;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: all 0.3s ease-in-out;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Upload Image & Background to Replace</h2>
+    <form action="/replace_bg" method="POST" enctype="multipart/form-data">
+      <label for="fileInput" class="custom-file-upload" id="fileLabel">Choose Image</label>
+      <input type="file" id="fileInput" name="file" accept="image/*" required>
+
+      <label for="bgInput" class="custom-file-upload" id="bgLabel">Choose Background</label>
+      <input type="file" id="bgInput" name="background" accept="image/*" required>
+
+      <button type="submit">Upload & Replace</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("fileInput").addEventListener("change", function () {
+      let fileName = this.files[0] ? this.files[0].name : "Choose Image";
+      document.getElementById("fileLabel").innerText = fileName;
+    });
+
+    document.getElementById("bgInput").addEventListener("change", function () {
+      let bgName = this.files[0] ? this.files[0].name : "Choose Background";
+      document.getElementById("bgLabel").innerText = bgName;
+    });
+  </script>
+</body>
+</html>
+

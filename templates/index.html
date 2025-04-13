@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Editor</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Background image */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: url("/static/index_back.jpg") no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Full-width Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.6); /* Frosted glass effect */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* Logo Styling */
+        .logo {
+            color: #5A3D5C; /* Deep lavender shade */
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation Menu */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: black; /* Soft purple */
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            color: #E09AB1; /* Light coral pink */
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+        }
+
+        /* Glassmorphism Effect for Content Box */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(12px);
+            margin-top: 120px;
+            width: 75%;
+        }
+
+        h1 {
+            color: #4A3659; /* Deep muted purple */
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color:black;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Flexbox for Button Row */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: nowrap; /* Ensures buttons stay in one line */
+        }
+
+        /* Soft Gradient Buttons */
+        .btn {
+        padding: 14px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background: linear-gradient(90deg, #FF9A8B, #FF6A88, #FF99AC); /* Vibrant gradient */
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 15px rgba(255, 105, 135, 0.3);
+        width: 220px;
+        text-align: center;
+    }
+
+    .btn:hover {
+        background: linear-gradient(90deg, #FF758C, #FF7EB3);
+        transform: scale(1.05);
+        box-shadow: 0px 6px 18px rgba(255, 120, 160, 0.4);
+    }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .button-container {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 30px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 10px;
+            }
+
+            .container {
+                width: 90%;
+                padding: 30px;
+            }
+
+            .button-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BG Editor</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Welcome to Background Editor</h1>
+        <p>Remove, blur, or replace backgrounds with ease!</p>
+        <div class="button-container">
+            <button class="btn" onclick="location.href='/upload_remove_bg'">Remove Background</button>
+            <button class="btn" onclick="location.href='/upload_blur_bg'">Blur Background</button>
+            <button class="btn" onclick="location.href='/upload_replace_bg'">Replace Background</button>
+            <button class="btn" onclick="location.href='/crop_resize'">Crop & Resize</button>
+        </div>
+    </div>
+</body>
+</html>
+

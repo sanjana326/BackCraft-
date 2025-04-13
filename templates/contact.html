@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: url("static/contact_back.jpg") no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .form-box {
+      background: rgba(0, 0, 0, 0.7); /* Black transparent background */
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      max-width: 450px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #ffffff;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      color: #f0f0f0;
+      font-weight: 600;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #555;
+      background-color: #1a1a1a; /* black background for fields */
+      color: #f0f0f0; /* light text color */
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #bbb;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #00f2fe;
+      outline: none;
+    }
+
+    button {
+      padding: 14px;
+      font-size: 17px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+    }
+
+    @media (max-width: 768px) {
+      .form-box {
+        padding: 30px 20px;
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-box">
+    <h1>Contact Us</h1>
+    <form action="{{ url_for('contact') }}" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Your email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" placeholder="Your message" rows="4" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</body>
+
+</html>
+
+
+

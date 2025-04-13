@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blur Background</title>
+    <script>
+        function showLoader() {
+            document.getElementById("loader").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload Image to Blur Background</h2>
+        <form action="/blur_bg" method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit" class="btn">Upload & Blur</button>
+        </form>
+        <div id="loader" style="display: none;">Processing...</div>
+        {% if processed_image %}
+            <img src="{{ processed_image }}" alt="Processed Image">
+        {% endif %}
+    </div>
+</body>
+</html>
